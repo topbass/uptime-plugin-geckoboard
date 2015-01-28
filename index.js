@@ -18,17 +18,31 @@
 //     }
 // }
 
-// var CheckEvent = require('../../models/checkEvent');
+var http = require('http');
+var https = require('https');
 var Ping = require('../../models/ping');
 
 exports.initWebApp = function(options) {
-    var config = options.config.slack;
-
-    // CheckEvent.on('afterInsert', function(checkEvent) {
-
-    // });
+    var config = options.config.cyfe;
 
     Ping.on('afterInsert', function(ping) {
+        ping.findCheck(function(err, check) {
+            if (!config[check.name]) {
+                return;
+            }
 
+            var endpoint = config[check.name];
+            var matches = endpoint.match(/(http|https):\/\/([^\/]+)(\/.*)?/);
+
+            if (matches === null) {
+                return;
+            }
+
+            var httpOpts = {
+                host: matches[2],
+                path: matches[3] || '/',
+                method: 'POST'
+            };
+        });
     });
 }
