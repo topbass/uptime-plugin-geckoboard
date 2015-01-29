@@ -1,10 +1,12 @@
 
 //
 // geckoboard:
-//   Google.com
-//     - url: [push url]
-//       key: [widget key]
-//       widget: [widget type, possible values are monitoring, linechart and highcharts]
+//   apiKey: [api key]
+//   check:
+//     Google.com
+//       - url: [push url]
+//         key: [widget key]
+//         widget: [widget type, possible values are monitoring, linechart and highcharts]
 //
 
 var fs = require('fs');
