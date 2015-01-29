@@ -25,7 +25,7 @@ exports.initWebApp = function(options) {
             if (err) {
                 return console.error(err);
             }
-            if (!config[check.name]) {
+            if (!config.check[check.name]) {
                 return;
             }
 
@@ -36,14 +36,6 @@ exports.initWebApp = function(options) {
                     return;
                 }
 
-                var httpOpts = {
-                    host: matches[2],
-                    path: matches[3] || '/',
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    }
-                };
                 var filename = templateDir + widget.widget + '.ejs';
                 var renderOptions = {
                     apiKey: config.apiKey,
@@ -53,6 +45,15 @@ exports.initWebApp = function(options) {
                     moment: moment
                 };
                 var json = ejs.render(fs.readFileSync(filename, 'utf8'), renderOptions);
+                var httpOpts = {
+                    host: matches[2],
+                    path: matches[3] || '/',
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Content-Length': json.length
+                    }
+                };
 
                 var req = (
                     matches[1] == 'https' ? https.request : http.request
