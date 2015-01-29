@@ -1,0 +1,8 @@
+{
+  "api_key": "<%= apiKey %>",
+  "data": {
+    "status": "<% if (check.isUp) { %>Up<% } else { %>Down<% } %>",
+    "downTime": "<%= moment.duration(check.uptime).humanize() %> ago",
+    "responseTime": "<%= Math.round(check.qos.responseTime) %> ms"
+  }
+}
