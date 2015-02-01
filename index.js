@@ -26,11 +26,12 @@ exports.initWebApp = function(options) {
                 return console.error(err);
             }
 
-            var period = 'day';
-            var begin = moment().startOf(period);
-            var end = moment().endOf(period);
+            // from: 60 mins ago
+            var begin = moment().subtract(60, 'minutes').valueOf();
+            // to: now
+            var end = moment().valueOf();
 
-            check.getStatsForPeriod(period, begin, end, function(err, stats) {
+            check.getStatsForPeriod('hour', begin, end, function(err, stats) {
                 if (err) {
                     return console.error(err);
                 }
@@ -59,6 +60,7 @@ exports.initWebApp = function(options) {
                         check: check,
                         ping: ping,
                         stats: stats,
+                        numTick: stats.length,
                         moment: moment
                     };
                     var postData = ejs.render(fs.readFileSync(filename, 'utf8'), renderOptions);
