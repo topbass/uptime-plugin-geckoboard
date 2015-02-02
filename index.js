@@ -1,13 +1,40 @@
-
-//
-// geckoboard:
-//   apiKey: [api key]
-//   check:
-//     Google.com
-//       - url: [push url]
-//         key: [widget key]
-//         widget: [widget type, possible values are monitoring, linechart and highcharts]
-//
+/**
+ * Geckoboard plugin
+ *
+ * Send up/down status (monitoring widget) and response time (line chart and
+ * highcharts widget) to Geckoboard
+ *
+ * Installation
+ * ------------
+ * This plugin is uninstalled by default. To install and enable it, git clone
+ * the plugin repo and add its entry
+ * to the `plugins` folder under uptime
+ *
+ *   $ git clone git@github.com:waltzofpearls/uptime-plugin-geckoboard.git geckoboard
+ *
+ * to the `plugins` key of the configuration:
+ *
+ *   // in config/production.yaml
+ *   plugins:
+ *     - ./plugins/geckoboard
+ *
+ * Configuration
+ * -------------
+ * Here is an example configuration:
+ *
+ *   // in config/production.yaml
+ *   geckoboard:
+ *     apiKey: [geckoboard api key]
+ *     check:
+ *       [Uptime check name]:
+ *         - url: [geckoboard push url]
+ *           key: [geckoboard widget key]
+ *           widget: monitoring # monitoring, linechart or highcharts
+ *         - url: [geckoboard push url]
+ *           key: [geckoboard widget key]
+ *           widget: linechart
+ *           color: '#00ff00'
+ */
 
 var fs = require('fs');
 var ejs = require('ejs');

@@ -8,14 +8,14 @@
     ],
     "settings" : {
       "axisx" : [
-        <% for (var i = numTick; i--; ) { %>
-          <% if (i == numTick || i == 0 || i % 10 == 0) { %>
+        <% for (var i = numTick; i--; ) {
+          if (i == numTick || i == 0 || i % 10 == 0) { %>
             "<%= moment(stats[i].timestamp).format('h:mA') %>"<% if (i > 0) { %>,<% } %>
-          <% } %>
-        <% } %>
+          <% }
+        } %>
       ],
       "axisy" : [],
-      "color" : "#ff00aa"
+      "color" : "<%= widget.color %>"
     }
   }
 }
