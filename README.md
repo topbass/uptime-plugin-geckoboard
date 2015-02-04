@@ -15,7 +15,8 @@ following commands.
 ```shell
 $ cd /path/to/your/uptime/installation/folder
 $ git clone git@github.com:waltzofpearls/uptime-plugin-geckoboard.git plugins/geckoboard
-# Restart Uptime app
+# Read the next section for plugin configuration first, then properly enable
+# and configure the plugin, and then restart Uptime app.
 ```
 
 ## Configuration
