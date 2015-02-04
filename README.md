@@ -1,22 +1,33 @@
 # uptime-plugin-geckoboard
-Uptime plugin for Geckoboard
+
+This is a custom Uptime plugin for Geckoboard. The main function of this plugin
+is to push uptime status to Geckoboard, so that geckoboard can generate graphs
+and charts from the data.
+
+- Uptime: https://github.com/fzaninotto/uptime
+- Geckoboard: https://www.geckoboard.com/
 
 ## Getting Started
+
+To install the plugin, you have to install Uptime first, and then execute the
+following commands.
 
 ```shell
 $ cd /path/to/your/uptime/installation/folder
 $ git clone git@github.com:waltzofpearls/uptime-plugin-geckoboard.git plugins/geckoboard
+# Restart Uptime app
 ```
 
 ## Configuration
 
-Add the following line under `plugins` to enable the geckoboard plugin
+In config file `config/production.yaml`, add the following line under `plugins`
+to enable the geckoboard plugin.
 
 ```yaml
   - ./plugins/geckoboard
 ```
 
-Add the following geckoboard plugin config to `config/production.yaml`
+Also add the following geckoboard config to `config/production.yaml`.
 
 ```yaml
 geckoboard:
@@ -31,6 +42,8 @@ geckoboard:
         widget: linechart
         color: '#00ff00'
 ```
+
+Restart Uptime app after changing the configuration.
 
 ## License
 
