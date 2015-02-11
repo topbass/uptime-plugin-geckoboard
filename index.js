@@ -107,6 +107,8 @@ exports.initWebApp = function(options) {
             });
         });
     });
+
+    console.log(moment.format() + ' - Enabled Geckoboard data push');
 }
 
 function sendHttpRequest(name, protocol, options, data) {
@@ -116,16 +118,22 @@ function sendHttpRequest(name, protocol, options, data) {
         if (res.statusCode == 200) {
             res.setEncoding('utf8');
             res.on('data', function (chunk) {
-                console.log('Geckoboard plugin response data [' + name + ']: ' + chunk);
+                console.log(moment.format() +
+                    ' - Geckoboard plugin response data [' + name + ']: ' +
+                    chunk);
             });
         } else {
-            console.error('Geckoboard plugin response code: ' + res.statusCode);
-            console.error('Geckoboard plugin response headers: ' + JSON.stringify(res.headers));
+            console.error(moment.format() +
+                ' - Geckoboard plugin response code: ' + res.statusCode);
+            console.error(moment.format() +
+                ' - Geckoboard plugin response headers: ' +
+                JSON.stringify(res.headers));
         }
     });
 
     req.on('error', function(_err) {
-        console.error('Geckoboard plugin response error: ' + _err.message);
+        console.error(moment.format() +
+            ' - Geckoboard plugin response error: ' + _err.message);
     });
 
     req.write(data);
